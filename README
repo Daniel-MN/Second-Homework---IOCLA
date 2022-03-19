@@ -1,0 +1,63 @@
+Musuroi Daniel-Nicusor
+323CB
+
+
+                    Tema 2 - Memoria lui Biju
+
+  Pentru realizarea temei nu am creat nicio variabila globala.
+
+  rotp.asm:
+  ->  Se parcurge plaintext de la 0 la len-1 si key de la len-1 la 0 si
+  se foloseste formula din enunt pentru calcularea fiecarui caracter din
+  ciphertext.
+
+  ages.asm:
+  ->  Se itereaza prin datele de nastere ale fiecarei persoane. La fiecare
+  iteratie se executa urmatoarele:
+    ->  Se retine anul curent, apoi se compara anul curent cu anul 
+    fiecarei persoane.
+    -> In cazul in care anul curent este mai mic sau egal decat anul 
+    nasterii unei persoane, atunci persoana va avea varsta 0.
+    -> In cazul in care anul curent este mai mare, se calculeaza diferenta
+    dintre anul curent si anul nasterii.
+    -> Daca luna curenta este mai mica decat luna nasterii unei persoane,
+    inseamna ca varsta persoanei este diferenta dintre anul curent
+    si anul nasterii, diferenta din care se scade 1 (nu si-a serbat inca
+    ziua).
+    -> Daca luna curenta este si luna nasterii unei persoane, atunci
+    se verifica daca ziua curenta este mai mica decat ziua nasterii. In
+    caz afirmativ, varsta persoanei este diferenta dintre anul curent si 
+    anul nasterii, diferenta din care se scade 1 (nu si-a serbat inca ziua).
+    -> In cazul in care persoana respectiva si-a serbat ziua in anul curent
+    (luna curenta este mai mare decat luna nasterii sau luna curenta este
+    egala cu luna nasterii, dar ziua curenta este mai mare decat ziua 
+    nasterii), varsta persoanei va fi diferenta dintre anul curent si anul 
+    nasterii.
+
+  columnar.asm:
+  -> Se itereaza prin coloanele matricei, luandu-se elementele din vectorul
+  de ordine(key), pana cand acesta se termina.
+  -> La fiecare iteratie prin coloane, se itereaza prin caracterele unei
+  coloane. Daca iteratorul prin caracterele unei coloane este mai mare
+  sau egal cu lungimea haystack, atunci se trece la urmatoarea coloana.
+
+  cache.asm:
+  ->  Am retinut tagul intr-un registru deoarece avem nevoie pentru 
+  diferite comparatii, dar si pentru completarea liniei to_replace din
+  cache in caz de CACHE MISS.
+  ->  Se verifica daca tagul se afla in tags:
+      -> Daca da, atunci este CACHE HIT. Indicele la care se afla in tags
+      se retine si este folosit pentru a gasi linia din cache la care se
+      afla octetul. In CACHE_HIT, se calculeaza offsetul, se ia octetul
+      din cache de la linia corespunzatoare si coloana offset si se
+      pune in reg.
+      -> Daca nu, atunci este CACHE MISS. Tag-ul este pus in tags.
+      Apoi se muta 4 octeti de la adresa tag (de data asta avand 000
+      la final) in primii 4 octeti de pe linia to_replace din cache, urmand
+      sa se mute 4 octeti de la adresa tag + 4 in urmatorii 4 octeti de pe 
+      linia to_replace din cache. In cele din urma, se refoloseste partea
+      pentru CACHE_HIT, indicile liniei fiind acum to_replace.
+
+  Nu am creat variabile globale, dar, atunci cand am avut nevoie, 
+  am dat push si pop pe stiva.
+ 
